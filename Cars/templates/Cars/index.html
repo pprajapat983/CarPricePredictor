@@ -1,0 +1,36 @@
+{% extends 'Cars/basic.html' %}
+    <!-- till here -->
+  
+{% block body %}
+{% load static %}
+    <section id="sec2">
+        <h1 align="center" class="head">Get a Car!!!</h1>
+        <div id="box" class="row">
+            {% for car in cars %}
+            <div class="card animated bounceInLeft col-md-4" id="c1" class="pic" style="width: 18rem;">
+                <img src='/media/{{car.image}}'
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" align="center">{{car.car_name}} <sup>{{car.year}} Model</sup></h5>
+                    <p class="card-text">
+                        Driven : {{car.kms_driven}} kms <br>
+                        Car : {{car.car_type}} <br>
+                        Owner: {{car.owner}} Owner <br>
+                        Variant : {{car.fuel_type}}
+                    </p>
+                    <a href="#"><button class="btn">Go Somewhere</button></a>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
+            </div>
+            {% endfor %}
+
+
+           
+        </div>
+
+    </section>
+
+ 
+
+  {% endblock %}
+
