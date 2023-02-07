@@ -1,0 +1,110 @@
+{% extends 'Cars/basic.html' %}
+ {% block body %}
+ {% load static %}
+<div class="container my-3">
+  <h3>Sell Your Car ...</h3>
+  <form action="/sell/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Car Name</label>
+      <input
+        type="name"
+        class="form-control"
+        id="Name"
+        name="name"
+        required
+        placeholder="Enter the Car Name"
+      />
+    </div>
+    <div class="form-group">
+        <label for="name">Year</label>
+        <input
+          type="number"
+          class="form-control"
+          id="Name"
+          name="year"
+          required
+          placeholder="Enter the Year of Purchase"
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Kms Driven</label>
+        <input
+          type="number"
+          class="form-control"
+          id="Name"
+          name="kms"
+          required
+          placeholder="Enter the number of kms driven"
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Selling Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="Name"
+          name="selling_price"
+          required
+          placeholder="Enter the Selling Price"
+        />
+      </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Car Type</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        required
+        placeholder="Enter the Car Type"
+      />
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Owner</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter the owner e.g. First owner"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Fuel Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          name="fueltype"
+          required
+          placeholder="Enter the Fuel Type"
+        />
+      </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Phone</label>
+      <input
+        type="tel"
+        class="form-control"
+        id="tel"
+        name="phone"
+        required
+        placeholder="Enter Your Phone number"
+      />
+    </div>
+    <div class="form-group">
+        <label for="carimage">Upload Car's images</label>
+        <input type="file" 
+        name='carimage' 
+        id='carimage' 
+        class="form-control-file" 
+        />
+      </div>
+
+    <button type="submit" class="btn btn-success my-2">Submit</button>
+  </form>
+</div>
+{% endblock %}

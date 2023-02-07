@@ -1,9 +1,494 @@
 {% extends 'Cars/basic.html' %}
-    <!-- till here -->
-  
-{% block body %}
-{% load static %}
+<!-- till here -->
+{% block css %}
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-<h1>Here we will predict the selling price </h1> 
-{{a}} INR /-
+  body {
+    background-color: ghostwhite;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+  }
+
+  header::before {
+    content: "";
+    background-color: rgb(77, 76, 76);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 55px;
+    width: 100vw;
+    z-index: 6;
+    opacity: 0.5;
+    border: none;
+  }
+
+  .logo {
+    margin-left: 10px;
+    width: 3.5vw;
+    z-index: 7;
+  }
+
+  .logo img {
+    cursor: pointer;
+    float: left;
+    /* border: 1px solid black; */
+    border-radius: 9px;
+    width: 60px;
+    z-index: 7;
+  }
+
+  .nav {
+    z-index: 7;
+    width: 70vw;
+    display: inline-block;
+  }
+
+  .nav ul {
+    margin-left: 30px;
+    font-family: "Baloo Bhai 2", cursive;
+    font-weight: bolder;
+    width: 90vw;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-evenly;
+    z-index: 8;
+    flex-wrap: wrap;
+    padding-top: 12px;
+  }
+
+  ul li a:hover {
+    z-index: 7;
+    text-shadow: 2px 2px 3px rgb(120, 120, 120);
+    background-color: white;
+    padding: 2px 12px;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .src {
+    display: flex;
+    position: absolute;
+    top: 300px;
+    left: 200px;
+  }
+
+  .btns {
+    background-color: rgb(235, 134, 58);
+    font-weight: bold;
+    color: rgb(58, 57, 57);
+    border-radius: 9px;
+    padding: 10px 30px;
+    border: none;
+    margin-left: 320px;
+    margin-top: 10px;
+    box-shadow: 3px 3px 5px rgb(231, 231, 118);
+  }
+
+  .btns:hover {
+    background-color: rgb(223, 106, 10);
+    color: white;
+  }
+
+  .srch {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 3px 3px 5px rgb(100, 107, 210);
+    width: 50em;
+  }
+
+  /* ////////// CARDS SECTION   ////////////////// */
+  .head {
+    color: rgb(8, 8, 8);
+    font-family: "Baloo Bhai 2", cursive;
+    font-weight: bolder;
+    font-size: 65px;
+    text-decoration: underline;
+    text-shadow: 2px 2px 5px rgb(107, 102, 102);
+    font-weight: bold;
+  }
+
+  #box {
+    /* background-color: rgb(240, 236, 236); */
+    height: 693px;
+    padding: 10px;
+    padding-top: 80px;
+  }
+
+  #box::before {
+    content: "";
+    position: absolute;
+    top: 36rem;
+    left: 0px;
+    background-image: url(https://images.unsplash.com/photo-1597292125040-81ec1a1d2415?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=385&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 39rem;
+
+    width: 100%;
+    z-index: -1;
+    opacity: 0.8;
+  }
+
+  /*  foooter starts */
+
+  footer {
+    width: 100vw;
+    height: 25rem;
+    background-color: #2f2f2f;
+  }
+
+  .f1 {
+    width: 100vw;
+    height: 3rem;
+    background-color: #3f3e45;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .f1:hover {
+    background-color: #474852;
+  }
+
+  .f1 a {
+    text-decoration: none;
+    color: white;
+    font-family: "Baloo Bhai 2", cursive;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .f1 a:hover {
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .f2 {
+    padding-top: 20px;
+    width: 100vw;
+    height: 20rem;
+    background-color: #52525f;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    align-items: flex-start;
+    justify-content: space-evenly;
+  }
+
+  .ft4 {
+    line-height: 1;
+    margin-top: 10px;
+    color: white;
+    font-family: "Baloo Bhai 2", cursive;
+  }
+
+  .ft4 h4 {
+    font-size: 16px;
+  }
+
+  .ft4 a {
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .ft4 a:hover {
+    text-decoration: underline;
+  }
+
+  .ft4 img {
+    width: 200px;
+    height: 220px;
+    margin-left: 40px;
+  }
+
+  .head3 {
+    color: white;
+    font-family: "Carter One", cursive;
+    font-weight: 300px;
+    font-size: 50px;
+    position: relative;
+    bottom: 50px;
+    right: 25px;
+    text-shadow: 1px 2px 4px black;
+    z-index: 2;
+    text-decoration: underline;
+  }
+
+  .res {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Baloo Bhai 2", cursive;
+    color: white;
+    margin-top: 5px;
+  }
+
+  /* ///////// form starts //////////////// */
+
+  .frm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 480px;
+    height: 530px;
+    background-color: white;
+    border: none;
+    box-shadow: 4px 4px 5px 3px rgb(0, 0, 0);
+    border-radius: 8px;
+    margin: auto;
+  }
+
+  table {
+    margin: auto;
+    width: 450px;
+    text-align: center;
+    font-family: "Baloo Bhai 2", cursive;
+    font-weight: 800;
+    font-size: 20px;
+    color: rgb(56, 55, 55);
+    text-shadow: 1px 1px 5px rgb(106, 102, 102);
+  }
+
+  input,
+  select,
+  option {
+    width: 300px;
+    margin: 5px;
+    border: 0.2px solid rgb(198, 197, 197);
+    box-shadow: 2px 2px 3px grey;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  tr {
+    text-align: justify;
+  }
+
+  #enq {
+    margin-top: 30px;
+    font-family: "Baloo Bhai 2", cursive;
+    font-weight: 900;
+    font-size: 55px;
+    text-shadow: 2px 2px 3px gray;
+  }
+
+  #sbt {
+    color: white;
+    background-color: rgb(41, 70, 233);
+    border: none;
+    padding: 10px;
+    margin: 20px;
+    font-size: 25px;
+    font-weight: 300;
+  }
+ 
+</style>
+{% endblock %} 
+{% block body %} {% load static %}
+<section id="sec2">
+  <div id="box">
+    <div class="frm">
+      <h1 align="center" id="enq">Predict your Car's price here</h1>
+      <table>
+        <form action="/predict/" method="post">
+          {% csrf_token %}
+          <tr>
+            <td>Car Name</td>
+            <td>
+              <!-- <input type="text" name="name" id="name" placeholder="Enter Name"/> -->
+              <select name="name" id="name" class="form-control">
+                <option>Hyundai Santro Xing</option>
+                <option>Mahindra Jeep CL550</option>
+                <option>Maruti Suzuki Ritz</option>
+                <option>Hyundai Grand i10</option>
+                <option>Ford EcoSport Titanium</option>
+                <option>Ford Figo</option>
+                <option>Tata Indica V2</option>
+                <option>Mahindra Bolero DI</option>
+                <option>Maruti Suzuki Swift</option>
+                <option>Maruti Suzuki Wagon</option>
+                <option>Toyota Innova 2.0</option>
+                <option>Renault Lodgy 85</option>
+                <option>Skoda Yeti Ambition</option>
+                <option>Maruti Suzuki Baleno</option>
+                <option>Renault Duster 110</option>
+                <option>Renault Duster 85</option>
+                <option>Honda City 1.5</option>
+                <option>Maruti Suzuki Dzire</option>
+                <option>Honda Amaze</option>
+                <option>Honda Amaze 1.5'</option>
+                <option>  Honda City</option>
+                <option>  Datsun Redi GO</option>
+                <option> Maruti Suzuki SX4</option>
+                <option>Mitsubishi Pajero Sport</option>
+                <option>Honda City ZX</option>
+                <option>Tata Indigo eCS</option>
+                <option>Volkswagen Polo Highline</option>
+                <option>Chevrolet Spark LS</option>
+               <option> Renault Duster 110PS</option>
+                <option>Mini Cooper S</option>
+                <option>Skoda Fabia 1.2L</option>
+                      <option>Renault Duster</option> 
+                      <option>Mahindra Scorpio S4 </option>
+                       <option>Mahindra Scorpio VLX</option>
+                       <option>Mahindra Quanto C8 </option>
+                       <option>Ford EcoSport </option>
+                       <option>Honda Brio</option>
+                       <option>Volkswagen Vento Highline </option>
+                       <option>Hyundai i20 Magna</option>
+                       <option>Toyota Corolla Altis </option>
+                       <option>Hyundai Verna Transform</option>
+                        <option>BMW 3 Series</option>
+                       <option>Maruti Suzuki A </option>
+                       <option>Toyota Etios GD </option>
+                       <option>Ford Figo Diesel</option>
+                       <option>Chevrolet Beat LT </option>
+                       <option>BMW 7 Series </option>
+                       <option>Mahindra XUV500 W8</option>
+                       <option>Hyundai i10 Magna</option>
+                        <option>Hyundai Verna Fluidic</option>
+                       <option>Maruti Suzuki Ertiga</option>
+                        <option>Honda Amaze 1.2 </option>
+                        <option>Hyundai i20 Asta</option>
+                       <option>Maruti Suzuki Eeco</option>
+                        <option>Maruti Suzuki Esteem </option>
+                        <option>Maruti Suzuki Ritz</option>
+                       <option>Toyota Etios Liva </option>
+                       <option>Chevrolet Spark </option>
+                       <option>Nissan Micra XV</option>
+                       <option>Chevrolet Beat</option>
+                        <option>Ford EcoSport Trend</option>
+                         <option>Tata Indica V2</option>
+                      <option>Hindustan Motors Ambassador</option>
+                        <option>Toyota Innova 2.5</option>
+                      <option>Volkswagen Jetta Highline</option>
+                        <option>Volkswagen Polo Comfortline</option>
+                      <option>Volkswagen Polo</option> 
+                       <option>Mahindra Scorpio</option>
+                        <option>Nissan Sunny</option>
+                      <option>Renault Kwid</option> 
+                       <option>Chevrolet Spark LT</option>
+                        <option>Fiat Punto Emotion</option>
+                      <option>Hyundai i10 Sportz</option>
+                        <option>Chevrolet Beat LS</option> 
+                        <option>Tata Indigo CS</option>
+                      <option>Hyundai Eon Era</option> 
+                       <option>Mahindra XUV500</option> 
+                       <option>Ford Fiesta</option> 
+                       <option>Hyundai i20</option>
+                      <option>Hyundai Fluidic Verna</option>
+                        <option>Fiat Petra ELX</option> 
+                        <option>Maruti Suzuki Ciaz</option>
+                        <option>Maruti Suzuki Zen</option>
+                         <option>Hyundai Creta 1.6</option> 
+                         <option>Mahindra Scorpio SLX</option>
+                        <option>Tata Nano Cx</option> 
+                        <option>Tata Sumo Victa</option> 
+                        <option>Volkswagen Passat Diesel</option>
+                        <option>Renault Scala RxL</option>
+                         <option>Hyundai i20 Active</option>
+                          <option>Mahindra Xylo E4</option>
+                        <option>Mahindra Jeep MM</option> 
+                        <option>Mahindra Bolero SLE</option> 
+                        <option>Force Motors Force</option>
+                        <option>Toyota Etios</option> 
+                        <option>Honda City VX</option> 
+                        <option>Mahindra Thar CRDe</option>
+                        <option>Audi A4 1.8</option>
+                         <option>Mercedes Benz GLA</option> 
+                         <option>Land Rover Freelander</option>
+                        <option>Renault Kwid RXT</option> 
+                        <option>Tata Aria Pleasure</option>
+                         <option>Mercedes Benz B</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Company</td>
+            <td>
+              <!-- <input type="text" name="company" id="company" placeholder="Company Name" /> -->
+              <select name="company" id="company" class="form-control">
+                <option>Hyundai</option>
+                <option>Mahindra</option>
+                <option>Maruti</option>
+                <option>Skoda</option>
+                <option>Ford</option>
+                <option>Audi</option>
+                <option>Toyota</option>
+                <option>Renault</option>
+                <option>Datsun</option>
+                <option>Mitsubishi</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Year</td>
+            <td>
+              <input
+                type="number"
+                name="year"
+                id="year"
+                placeholder="Enter Year"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Kms Driven</td>
+            <td>
+              <input
+                type="number"
+                name="kms"
+                id="kms"
+                placeholder="Kilometres Driven till now"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Fuel-Type</td>
+            <td>
+              <input
+                type="text"
+                name="fueltype"
+                id="type"
+                placeholder="Diesel / Petrol / Electric"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" name="" id="sbt" value="Submit" />
+            </td>
+            <td></td>
+          </tr>
+        </form>
+      </table>
+    </div>
+
+</div>
+{% if a %}
+<h2 class="text-center mb-5" >Your Car({{carname}})'s current price is <span><h1>{{a}} INR /-</h1></span></h2>
+{% endif %}
+</section>
+
 {% endblock %}

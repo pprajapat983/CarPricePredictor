@@ -18,8 +18,13 @@ from . import views
 
 urlpatterns = [
     path("",views.index,name="Home"),
+    path("buy/",views.buypage,name="Buy"),
     path("about/",views.about,name="AboutUs"),
     path("predict/",views.predict,name="PredictSP"),
-    # path("tracker/",views.tracker,name="TrackingStatus"),
-    # path("search/",views.search,name="Search"),
+    path("contact/",views.contact,name="Contact"),
+    path("search/",views.search,name="Search"),
+    path("sell/",views.sellcar,name="SellCar"),
+    path("carview/<int:carid>",views.carview,name="Carview"),
+    path('login/',views.handleLogin,name='login'),
+    path('logout/',views.handleLogout,name='logout'),    
 ]
